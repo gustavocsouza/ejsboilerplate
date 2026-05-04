@@ -1,5 +1,6 @@
-module.exports.paginaInicial = (req, res) => {
-    req.session.user = { nome: 'Gustavo' }
-    console.log(req.session)
-    res.render('index');
+const Contato = require('../models/ContatoModel');
+
+module.exports.index = async (req, res) => {
+    const contatos = await Contato.findAll();
+    res.render('index', { contatos });
 };

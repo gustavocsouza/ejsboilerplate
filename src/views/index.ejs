@@ -1,16 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testes</title>
-</head>
-<body>
-    <form action="/" method="POST">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <input type="text" name="name">
-        <button>Enviar</button>
-    </form>
-    <script src="./assets/js/bundle.js"></script>
-</body>
-</html>
+<%- include('includes/header') %> 
+<%- include('includes/nav') %>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h1 class="text-center my-4">Agenda</h1>
+      <p class="text-center lead">Seus contatos:</p>
+      
+      <%- include('includes/messages') %>
+
+      <% if (contatos.length) { %>
+      <div class="responsive-table my-3">
+        <table class="table">
+          <% contatos.forEach(contato => { %>
+            <tr>
+              <td><%= contato.nome %></td>
+              <td><%= contato.sobrenome %></td>
+              <td><%= contato.email %></td>
+              <td><%= contato.telefone %></td>
+              <td><a href="/contatos/<%= contato._id %>">Editar</a></td>
+              <td><a class="text-danger" href="/contatos/delete/<%= contato._id %>">Excluir</a></td>
+            </tr>
+            <% }) %>
+          </table>
+        </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem contatos na sua agenda.</p>
+      <% } %>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<%- include('includes/footer') %>

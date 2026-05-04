@@ -13,16 +13,16 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.js$/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/env']
-          }
-        }
+            presets: ["@babel/env"],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   devtool: "source-map",
